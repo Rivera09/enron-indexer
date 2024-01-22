@@ -9,6 +9,7 @@ import (
 	"math/rand"
 	"net/http"
 	"os"
+	"runtime/pprof"
 	"strconv"
 	"strings"
 	"sync"
@@ -154,6 +155,13 @@ func main() {
 	if len(os.Args) < 2 {
 		panic("Para ejecutar el indexer, ingrese la dirección de la base de datos a indexar")
 	}
+
+	cpu, err := os.Create("cpu.prof")
+	if err != nil {
+		log.Fatal(err)
+	}
+	pprof.StartCPUProfile(cpu)
+	defer pprof.StopCPUProfile()
 
 	database_path := os.Args[1] + "/maildir/"
 	current_path := database_path
