@@ -60,8 +60,7 @@ func insert_data_batch(data Payload_structure) {
 	password := "admin"
 	auth := user + ":" + password
 	bas64encoded_creds := base64.StdEncoding.EncodeToString([]byte(auth))
-	zinc_host := "http://localhost:4080"
-	zinc_url := zinc_host + "/api/" + "/_bulkv2"
+	zinc_url := "http://localhost:4080/api/_bulkv2"
 	payload, _ := json.MarshalIndent(data, "", "   ")
 	req_body := bytes.NewBuffer(payload)
 	req, err := http.NewRequest("POST", zinc_url, req_body)
