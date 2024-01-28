@@ -50,15 +50,12 @@ tr {
   transition: 0.3s;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-
 tr:hover {
-  background-color: grey;
+  background-color: #f0edff;
 }
 
 tr.selected {
-  background-color: green;
+  background-color: #444888;
+  color: white;
 }
 </style>

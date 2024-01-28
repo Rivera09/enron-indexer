@@ -28,11 +28,13 @@ h3 {
 }
 
 .filename {
-  color: red;
+  color: #444888;
+  font-weight: 500;
   margin-bottom: 20px;
   width: max-content;
-  border: 1px solid black;
+  border: 1px solid #444888;
   padding: 10px;
+  border-radius: 4px;
 }
 
 p {

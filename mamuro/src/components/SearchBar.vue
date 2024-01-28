@@ -22,7 +22,7 @@ const resetTable = () => {
       placeholder="Search email"
       autocomplete="off"
     />
-    <button @click="resetTable">Reset</button>
+    <input type="button" @click="resetTable" value="reset" />
     <button type="submit">Search</button>
   </form>
 </template>
@@ -34,10 +34,25 @@ form {
   gap: 20px;
 }
 
-button {
+input {
+  font-weight: 600;
+}
+
+button,
+input[type="button"] {
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 4px;
   border: 1px solid black;
+  transition: 0.3s;
+  width: max-content;
+  flex: 0;
+  cursor: pointer;
+}
+
+button:hover,
+input[type="button"]:hover {
+  background-color: #444888;
+  color: white;
 }
 
 input {
@@ -46,6 +61,6 @@ input {
   max-width: 100%;
   padding: 10px;
   outline: none;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 </style>
