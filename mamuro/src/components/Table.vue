@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { TSource } from "@/types/emails";
 
-defineProps<{ emailsList: TSource[] }>();
+defineProps<{ emailsList: TSource[]; selectedId?: string }>();
 const emit = defineEmits(["clicked"]);
 
 const handleClick = (id: string) => {
@@ -21,6 +21,7 @@ const handleClick = (id: string) => {
     <tbody>
       <tr
         v-for="{ Subject, From, To, id } in emailsList"
+        :class="{ selected: !!selectedId && selectedId === id }"
         @click="handleClick(id)"
       >
         <th>{{ Subject || "No subject" }}</th>
@@ -33,9 +34,6 @@ const handleClick = (id: string) => {
 
 <style scoped>
 table {
-  /* margin: auto; */
-
-  /* width: 95%; */
   border-collapse: collapse;
   align-self: flex-start;
 }
@@ -47,7 +45,20 @@ th {
   padding: 8px;
 }
 
+tr {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+tr:hover {
+  background-color: grey;
+}
+
+tr.selected {
+  background-color: green;
 }
 </style>

@@ -5,7 +5,10 @@ defineProps<{ selectedEmail?: TSource }>();
 </script>
 <template>
   <div class="viewer" v-if="selectedEmail">
-    <h3>{{ selectedEmail.Subject }} - {{ selectedEmail.Date }}</h3>
+    <h3>
+      {{ selectedEmail.Subject }} - {{ selectedEmail.Date }} (from:
+      {{ selectedEmail.From }})
+    </h3>
 
     <div class="filename" v-if="selectedEmail['X-Filename']">
       <p>File: {{ selectedEmail["X-Filename"] }}</p>

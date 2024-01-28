@@ -38,6 +38,27 @@ func main() {
 
 func getEmails(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	params := r.URL.Query()
+
+	termQueryValues := params["term"]
+	var term string
+	if len(termQueryValues) > 0 {
+		term = termQueryValues[0]
+	} else {
+
+		type Message struct {
+			Message string `json:"message"`
+		}
+
+		m := Message{Message: "Invalid term"}
+
+		bytes, _ := json.Marshal(m)
+
+		w.WriteHeader(400)
+		w.Write(bytes)
+	}
+
 	type Query struct {
 		Term  string `json:"term"`
 		Field string `json:"field"`
@@ -55,7 +76,7 @@ func getEmails(w http.ResponseWriter, r *http.Request) {
 	payload := Payload{
 		SearchType: "match",
 		Query: Query{
-			Term:  "forecast",
+			Term:  term,
 			Field: "_all",
 		},
 		SortFields: []string{},
