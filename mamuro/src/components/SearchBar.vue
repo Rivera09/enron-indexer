@@ -14,53 +14,26 @@ const resetTable = () => {
 </script>
 
 <template>
-  <form @submit.prevent="submitForm">
+  <form @submit.prevent="submitForm" class="mb-5 flex gap-x-5">
     <input
       type="text"
       v-model="term"
       name="term"
       placeholder="Search email"
       autocomplete="off"
+      class="font-semibold rounded border-2 border-indigo-900 flex-1 p-2.5 outline-none"
     />
-    <input type="button" @click="resetTable" value="reset" />
-    <button type="submit">Search</button>
+    <input
+      type="button"
+      @click="resetTable"
+      value="reset"
+      class="p-2.5 rounded border-2 border-indigo-900 duration-300 hover:bg-indigo-900 hover:text-white"
+    />
+    <button
+      type="submit"
+      class="p-2.5 rounded border-2 border-indigo-900 duration-300 hover:bg-indigo-900 hover:text-white"
+    >
+      Search
+    </button>
   </form>
 </template>
-
-<style scoped>
-form {
-  margin: 20px 0;
-  display: flex;
-  gap: 20px;
-}
-
-input {
-  font-weight: 600;
-}
-
-button,
-input[type="button"] {
-  padding: 10px;
-  border-radius: 4px;
-  border: 1px solid black;
-  transition: 0.3s;
-  width: max-content;
-  flex: 0;
-  cursor: pointer;
-}
-
-button:hover,
-input[type="button"]:hover {
-  background-color: #444888;
-  color: white;
-}
-
-input {
-  border: 1px solid black;
-  flex: 1;
-  max-width: 100%;
-  padding: 10px;
-  outline: none;
-  border-radius: 4px;
-}
-</style>

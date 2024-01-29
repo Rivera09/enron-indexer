@@ -10,50 +10,32 @@ const handleClick = (id: string) => {
 </script>
 
 <template>
-  <table>
+  <table class="border-collapse self-start">
     <thead>
       <tr>
-        <th>Subject</th>
-        <th>From</th>
-        <th>To</th>
+        <th class="p-1 border-2 border-black">Subject</th>
+        <th class="p-1 border-2 border-black">From</th>
+        <th class="p-1 border-2 border-black">To</th>
       </tr>
     </thead>
     <tbody>
       <tr
         v-for="{ Subject, From, To, id } in emailsList"
         :class="{ selected: !!selectedId && selectedId === id }"
+        class="hover:bg-indigo-200 duration-300 cursor-pointer"
         @click="handleClick(id)"
       >
-        <th>{{ Subject || "No subject" }}</th>
-        <th>{{ From }}</th>
-        <th>{{ To || "" }}</th>
+        <th class="p-1 text-left border-2 border-black">
+          {{ Subject || "No subject" }}
+        </th>
+        <th class="p-1 text-left border-2 border-black">{{ From }}</th>
+        <th class="p-1 text-left border-2 border-black">{{ To || "" }}</th>
       </tr>
     </tbody>
   </table>
 </template>
 
 <style scoped>
-table {
-  border-collapse: collapse;
-  align-self: flex-start;
-}
-
-td,
-th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr {
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-tr:hover {
-  background-color: #f0edff;
-}
-
 tr.selected {
   background-color: #444888;
   color: white;

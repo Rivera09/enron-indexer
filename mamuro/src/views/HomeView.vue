@@ -21,6 +21,7 @@ const handleSearch = async (term: string) => {
 
 const handleReset = () => {
   emails.value = [];
+  selectedEmail.value = undefined;
 };
 
 const handleClick = (id: string) => {
@@ -31,30 +32,20 @@ const handleClick = (id: string) => {
 
 <template>
   <Header />
-  <main>
+  <main class="p-5">
     <SearchBar @on-search="handleSearch" @reset="handleReset" />
-    <div class="flex-c">
+    <div class="flex gap-5">
       <Table
         :emails-list="emails"
         :selected-id="selectedEmail?.id"
         @clicked="handleClick"
+        v-if="emails.length"
+        class="flex-1"
       />
-      <EmailReader :selected-email="selectedEmail" />
+      <p v-else class="text-center flex-1 mt-10 text-3xl font-bold">
+        Email list is empty
+      </p>
+      <EmailReader :selected-email="selectedEmail" class="flex-1" />
     </div>
   </main>
 </template>
-
-<style scoped>
-main {
-  padding: 20px;
-}
-
-.flex-c {
-  display: flex;
-  gap: 20px;
-}
-
-.flex-c > * {
-  flex: 1;
-}
-</style>

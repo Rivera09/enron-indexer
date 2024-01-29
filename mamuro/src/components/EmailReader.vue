@@ -5,39 +5,20 @@ defineProps<{ selectedEmail?: TSource }>();
 </script>
 <template>
   <div class="viewer" v-if="selectedEmail">
-    <h3>
+    <h3 class="text-2xl mb-5 font-bold">
       {{ selectedEmail.Subject }} - {{ selectedEmail.Date }} (from:
       {{ selectedEmail.From }})
     </h3>
 
-    <div class="filename" v-if="selectedEmail['X-Filename']">
-      <p>File: {{ selectedEmail["X-Filename"] }}</p>
-    </div>
+    <p
+      class="text-indigo-900 rounded border-2 border-indigo-900 font-medium p-2.5 max-w-max mb-5 text-lg"
+      v-if="selectedEmail['X-Filename']"
+    >
+      File: {{ selectedEmail["X-Filename"] }}
+    </p>
 
-    <p>
+    <p class="text-lg">
       {{ selectedEmail.Body }}
     </p>
   </div>
 </template>
-
-<style scoped>
-h3 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
-.filename {
-  color: #444888;
-  font-weight: 500;
-  margin-bottom: 20px;
-  width: max-content;
-  border: 1px solid #444888;
-  padding: 10px;
-  border-radius: 4px;
-}
-
-p {
-  font-size: 1.2rem;
-}
-</style>
